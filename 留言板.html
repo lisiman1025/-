@@ -1,0 +1,35 @@
+<!doctype <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <script src="main.js"></script>
+</head>
+<body>
+        <h1>简易留言板</h1>
+        <p>姓名</p>
+        <input id="name" type="text"/> 
+        <p>内容</p>
+        <input id="btn" type="text"/>
+        <button id="liuy" >留言</button>
+       <ul id="neir"></ul>
+        <script type="text/javascript">
+         liuy.onclick=function()
+        {
+        var nE=document.getElementById("name").value
+        var str=document.getElementById("btn").value;
+       //document.getElementById("neir").innerHTML=c;
+        var a=document.getElementById("neir")
+        b=document.createElement('li');
+        a.appendChild(b);
+        b.innerHTML=nE+": "+str+"<scan id='zhan'></scan>";
+        zhan.onclick=function(){
+            var num    
+        }
+        }
+       </script>
+  </body>
+</html>
