@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>第5次作业</title>
+</head>
+<body>
+    <p id="wu">第五次作业</p>
+    <h3>重邮2015级学生信息</h3>
+    <div id="txt">
+     <!--<button id="enter">进入</button>-->      
+    </div>
+        <button id='lastPage'>上一页</button>
+        <button id='nextPage'>下一页</button>
+    <div id="bu"></div>
+    <script>
+        var value;
+        var str1=1;
+        var str2=2015;
+        /*var inter=document.getElementById("enter");
+        inter.onclick=function(){
+            var but=document.getElementById("txt");
+            but.insertAdjacentHTML("afterend","<button id='lastPage'>上一页</button>")
+            but.insertAdjacentHTML("afterend","<button id='nextPage'>下一页</button>")
+        }*/
+        function loadXMLDoc(str1){
+        var xml;
+        if(window.XMLHttpRequest)
+        {
+        xml=new XMLHttpRequest();
+        }
+        else{
+            xml=new ActiveXObject();
+        }
+        xml.onreadystatechange=function(){
+            var txt,x,i,ai;
+            if(xml.readyState==4&&xml.status==200){
+                document.getElementById("txt").innerText='当前页数: page'+str1;
+                value=xml.responseText;
+                x=JSON.parse(value);
+                ai=document.getElementById("bu")
+              for(i=0;i<19;i++){ai.insertAdjacentHTML("afterend","<span>\xa0\xa0\xa0\xa0学号</span>"+x.result[i].student_num) 
+                 ai.insertAdjacentHTML("afterend","<span>\xa0\xa0\xa0\xa0姓名:</span>"+x.result[i].name)
+                 ai.insertAdjacentHTML("afterend","<span>\xa0\xa0\xa0\xa0专业:</span>"+x.result[i].major)
+                  ai.insertAdjacentHTML("afterend","<span>\xa0\xa0\xa0\xa0性别:</span>"+x.result[i].gender)
+                ai.insertAdjacentHTML("afterend","<span>班级:</span>"+x.result[i].class_num)
+                ai.insertAdjacentHTML("afterend","<br>");
+                
+                }
+            }
+             }
+             xml.open("GET","https://api.tumiv.com/v2/cqupt/student?year="+str2+"&page="+str1);
+             xml.send();
+        }
+        var lastPage=document.getElementById("lastPage");
+        lastPage.onclick=function(){
+             str1-=1;
+            if(str1<=0||str1>10)
+            {
+                if(str1==0)
+                str1=1;
+                if(str1==11)
+                str1=10;
+            }
+            else{
+            loadXMLDoc(str1);
+            }
+        }
+        var nextPage=document.getElementById("nextPage");
+        nextPage.onclick=function(){ 
+            str1+=1;
+            if(str1>10||str1<=0){
+                if(str1==0)
+                str1=1;
+                if(str1==11)
+                str1=10;
+            }
+            else{                         
+                loadXMLDoc(str1);
+            }
+    }
+    </script>
+</body>
+</html>
